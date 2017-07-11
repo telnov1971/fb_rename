@@ -69,7 +69,13 @@ def decoder(_binary):
         return _content
 
 
+__I__ = 0
+__P__ = 100 / len(__list_of_files__)
+
 for f in __list_of_files__:
+    __I__ += 1
+    per = '\t' + str(round(__I__*__P__, 2))
+    print(per + '%', end='\r')
     try:
         fname = ''
         arr_bin = []

@@ -75,11 +75,12 @@ def __main__():
         quit()
     percent = 100 / len(list_of_files)
     ind = 0
-    for flb in list_of_files:
+    for flbi in list_of_files:
+        flb = str(flbi)
         ind += 1
         per = round(ind*percent, 2)
         progress = '|' + ('*'*round(per // 5)) + (' '*(20 - round(per // 5))) + '|'
-        print('%s %6.2f' % (progress,per), end='\r')
+        print(('%s %6.2f' % (progress, per)), end='\r')
         try:
             fname = ''
             if is_zipfile(flb):
@@ -103,7 +104,7 @@ def __main__():
                 fname = getname(text, flb)
                 if not fname == '':
                     if not Path(fname).exists():
-                        flb.rename(fname)
+                        flbi.rename(fname)
         except OSError:
             zpfl.close()
             fb2.close()
@@ -111,5 +112,6 @@ def __main__():
             __log__.write(str(sys.exc_info()) + '\n')
     print()
     input("Press Enter")
+
 
 __main__()

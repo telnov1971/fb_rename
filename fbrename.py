@@ -80,7 +80,9 @@ def __main__():
         flb = str(flbi)
         ind += 1
         per = round(ind*percent, 2)
-        progress = '|' + ('*'*round(per // 5)) + (' '*(20 - round(per // 5))) + '|'
+        star = '*'*round(per // 5)
+        space = ' '*(20 - round(per // 5))
+        progress = '|' + star + space + '|'
         print(('%s %6.2f' % (progress, per)), end='\r')
         try:
             fname = ''

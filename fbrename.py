@@ -2,6 +2,7 @@
 from pathlib import Path
 from zipfile import is_zipfile, ZipFile
 import sys
+import os
 
 
 # coding: utf8
@@ -45,7 +46,7 @@ def getname(_text, _f):
     if not name == '':
         _fname = name
     else:
-        __log__.write('Name in file ' + str(_f) + ' not found')
+        __log__.write('Name in file ' + _f + ' not found')
     year = findstr(_text, 'year')
     if not year == '':
         _fname = year + ' ' + _fname
@@ -111,6 +112,10 @@ def __main__():
             __log__.write(str(flb) + '\t->\t' + fname + '\n')
             __log__.write(str(sys.exc_info()) + '\n')
     print()
+    __log__.close()
+    err = open('error.log')
+    if not err.read():
+        os.remove('error.log')
     input("Press Enter")
 
 

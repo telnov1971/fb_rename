@@ -29,7 +29,7 @@ def findstr(_text, _str):
     if _i1 > 0:
         _i2 = _text.find('</' + _str + '>')
         if _i2 > 0:
-            name = _text[_i1+len(_str)+2:_i2]
+            name = _text[_i1 + len(_str) + 2:_i2]
             name = name.lstrip('\n').lstrip(' ').rstrip('\n')
             name = name.rstrip(' ').rstrip('\n')
         else:
@@ -68,6 +68,15 @@ def decoder(_binary):
         return _content
 
 
+def progress(ind, percent):
+    per = round(ind * percent, 2)
+    star = '*' * round(per // 5)
+    space = ' ' * (20 - round(per // 5))
+    progress = '|' + star + space + '|'
+    print(('%s %6.2f' % (progress, per)), end='\r')
+
+
+
 def __main__():
     ''' __main__ - main circle program '''
     list_of_files = get_list_fb()
@@ -79,11 +88,7 @@ def __main__():
     for flbi in list_of_files:
         flb = str(flbi)
         ind += 1
-        per = round(ind*percent, 2)
-        star = '*'*round(per // 5)
-        space = ' '*(20 - round(per // 5))
-        progress = '|' + star + space + '|'
-        print(('%s %6.2f' % (progress, per)), end='\r')
+        progress(ind,percent)
         try:
             fname = ''
             if is_zipfile(flb):
